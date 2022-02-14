@@ -1,0 +1,21 @@
+import org.junit.Test;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class TesteCampoTreinamento {
+	
+	@Test
+	public void teste() {
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\t_felipe.barbosa\\Documents\\Projetos\\Drivers\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		
+		driver.manage().window().setSize(new Dimension(1200, 765));
+		
+		driver.get("file:///C:/Users/t_felipe.barbosa/Documents/Projetos/componentes.html");
+		System.getProperty("user.dir");
+		//System.out.println(driver.getTitle()); 
+		//driver.quit();
+	}
+
+}

@@ -1,0 +1,41 @@
+import org.junit.Test;
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class TesteCampoTreinamento {
+	
+	
+
+	
+	@Test
+	public void testeTextFild() {
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\t_felipe.barbosa\\Documents\\Projetos\\Drivers\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		
+		driver.manage().window().setSize(new Dimension(1200, 765));
+		
+		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html"); //informando o diretorio raiz de onde estao os arquivos
+		
+	    driver.findElement(By.id("elementosForm:nome")).sendKeys("Felipe"); //sendKeys método para escrever no campo text
+	    //driver.findElement(By.id("elementosForm:nome")).getText(); //pegando o texto do campo
+	    Assert.assertEquals("Felipe", driver.findElement(By.id("elementosForm:nome")).getAttribute("value"));
+	    driver.quit();
+	}
+	
+	@Test
+	public void textArea() {
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\t_felipe.barbosa\\Documents\\Projetos\\Drivers\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		
+		driver.manage().window().setSize(new Dimension(1200, 765));
+		
+		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html"); //informando o diretorio raiz de onde estao os arquivos
+		driver.findElement(By.id("elementosForm:sugestoes")).sendKeys("Inclusão da musculação");
+		Assert.assertEquals("Inclusão da musculação", driver.findElement(By.id("elementosForm:sugestoes")).getAttribute("value"));
+		driver.quit();
+	}
+
+}
