@@ -45,13 +45,14 @@ public class TesteAlert {
 		@Test
 		public void deveInteragirComComfirmConfirmado() {
 	
-			driver.findElement(By.id("confirm")).click();
-			//cenário de validação do botqao confirma
-			Alert confirmAlert = driver.switchTo().alert();
-			Assert.assertEquals("Confirm Simples", confirmAlert.getText());
-			confirmAlert.accept();
-			Assert.assertEquals("Confirmado", confirmAlert.getText());
-			confirmAlert.accept();
+			dsl.clicarBotao("confirm");
+			Assert.assertEquals("Confirm Simples", dsl.alertaObterTextoEAceita());
+			Assert.assertEquals("Confirmado", dsl.alertaObterTextoEAceita());
+			
+			dsl.clicarBotao("confirm");
+			Assert.assertEquals("Confirm Simples", dsl.alertaObterTextoENega());
+			Assert.assertEquals("Negado", dsl.alertaObterTextoENega());
+			
 		}	
 		
 		@Test
