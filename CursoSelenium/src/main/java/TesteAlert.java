@@ -43,7 +43,7 @@ public class TesteAlert {
 	
 		
 		@Test
-		public void deveInteragirComComfirmConfirmado() {
+		public void deveInteragirComAlertfirmConfirm() {
 	
 			dsl.clicarBotao("confirm");
 			Assert.assertEquals("Confirm Simples", dsl.alertaObterTextoEAceita());
@@ -57,29 +57,23 @@ public class TesteAlert {
 		
 		@Test
 		public void deveInteragirComComfirmnegado() {
-			
-			driver.findElement(By.id("confirm")).click();
+
 			//cenário de validação do botqao cancel
-			Alert cancelAlert = driver.switchTo().alert();
-			Assert.assertEquals("Confirm Simples", cancelAlert.getText());
-			cancelAlert.dismiss();
-			Assert.assertEquals("Negado", cancelAlert.getText());
-			cancelAlert.accept();
+			dsl.clicarBotao("confirm");
+			Assert.assertEquals("Confirm Simples", dsl.alertaObterTextoENega());
+			Assert.assertEquals("Negado", dsl.alertaObterTextoENega());
+			
 		}
 		
 		@Test
 		public void deveInteragirComAlertPrompt() {
 
-			driver.findElement(By.id("prompt")).click();
-			Alert prompt = driver.switchTo().alert();
+			dsl.clicarBotao("prompt");
 			
-			Assert.assertEquals("Digite um numero", prompt.getText());
-			prompt.sendKeys("12345");
-			prompt.accept();
-			
-			Assert.assertEquals("Era 12345?",prompt.getText());
-			prompt.accept();
-			Assert.assertEquals(":D",prompt.getText());
-			prompt.accept();
+			Assert.assertEquals("Digite um numero", dsl.alertaObterTexto());
+			dsl.alertaEscrever("12345");
+			Assert.assertEquals("Era 12345?",dsl.alertaObterTextoEAceita());
+			Assert.assertEquals(":D",dsl.alertaObterTextoEAceita());
+
 		}	
 }

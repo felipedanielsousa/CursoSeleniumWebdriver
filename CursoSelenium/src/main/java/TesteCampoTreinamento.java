@@ -42,16 +42,27 @@ public class TesteCampoTreinamento {
 		/** Método recebe como parâmetro o ID, e a string a ser digitada no textField(sendKeys)  **/
 	    dsl.escrever("elementosForm:nome", "Felipe"); //sendKeys método para escrever no campo text
 	    /**Metodo obter valor campo traz o valor do campo passando como parametro o ID **/
-	    Assert.assertEquals("Felipe", dsl.obtervalorCampo("elementosForm:nome"));
+	    Assert.assertEquals("Felipe", dsl.obterValorCampo("elementosForm:nome"));
 	 }
+	
+	@Test
+	public void interacaoTextDuplo() {
+		dsl.escrever("elementosForm:nome", "Felipe");
+		Assert.assertEquals("Felipe", dsl.obterValorCampo("elementosForm:nome"));
+		
+		dsl.escrever("elementosForm:nome", "Daniel");
+		Assert.assertEquals("Daniel", dsl.obterValorCampo("elementosForm:nome"));
+	}
 	
 	@Test
 	public void interacaoTextArea() {
 		
 		dsl.escrever("elementosForm:sugestoes", "Inclusão da musculação");
-		Assert.assertEquals("Inclusão da musculação", dsl.obtervalorCampo("elementosForm:sugestoes"));
+		Assert.assertEquals("Inclusão da musculação", dsl.obterValorCampo("elementosForm:sugestoes"));
 	
 	}
+	
+
 	
 	@Test
 	public void interacaoRadioButton() {

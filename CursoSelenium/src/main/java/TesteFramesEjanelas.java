@@ -11,11 +11,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class TesteFramesEjanelas {
 	
 	private WebDriver driver; 
+	private DSL dsl;
 	
 	@Before
 	public void inicializa() {
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\t_felipe.barbosa\\Documents\\Projetos\\Drivers\\chromedriver.exe");
 		driver = new ChromeDriver();
+		dsl = new DSL(driver);
 		driver.manage().window().setSize(new Dimension(1200, 765));
 
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html"); //informando o diretorio raiz de onde estao os arquivos
@@ -28,49 +30,45 @@ public class TesteFramesEjanelas {
 	
 	@Test
 	public void deveInteragirComFrame() {
-
-		driver.switchTo().frame("frame1");
-		driver.findElement(By.id("frameButton")).click();
 		
-		Alert alert = driver.switchTo().alert();
-		String mensagemAlert = alert.getText();
-		Assert.assertEquals("Frame OK!", mensagemAlert);
-		alert.accept();
+		dsl.entrarFrame("frame1");
+		dsl.clicarBotao("frameButton");
 		
-		driver.switchTo().defaultContent();
-		driver.findElement(By.id("elementosForm:nome")).sendKeys(mensagemAlert);
+		String msg = dsl.alertaObterTextoEAceita();
+		Assert.assertEquals("Frame OK!", msg);
+		
+		dsl.sairFrame();
+		dsl.escrever("elementosForm:nome", msg);
 	}
 	
 	@Test
 	public void deveInteragirComJanelas() {
-	
-		driver.findElement(By.id("buttonPopUpEasy")).click();
+		dsl.clicarBotao("buttonPopUpEasy");
 		
-		driver.switchTo().window("Popup");
-		driver.findElement(By.tagName("textarea")).sendKeys("Deu certo?");
+		dsl.trocarJanela("Popup");
+		dsl.escrever(By.tagName("textarea"), "Deu certo?");
 		driver.close();
 		
-		driver.switchTo().window("");
-		driver.findElement(By.tagName("textarea")).sendKeys("E agora?");
-
+		dsl.trocarJanela("");
+		dsl.escrever(By.tagName("textarea"), "E agora?");
 	}
 	
 	@Test
 	public void deveInteragirComJanelaSemTitulo() {
 	
-		driver.findElement(By.id("buttonPopUpHard")).click();
+		dsl.clicarBotao("buttonPopUpHard");
 		System.out.println(driver.getWindowHandle());
 		/**GetWindowHandles traz o ID da janela(sempre que executa, esse id muda) **/
 		System.out.println(driver.getWindowHandles());
 		/**Driver retorna um webelement, o getWindowHandles foi armazenado pro método toArray
 		 * e passado o indice 1 que corresponde o da janela pequena, o casting foi feito pois o driver
 		 * não aceita uma string e sim um objeto webdriver **/
-		driver.switchTo().window((String) driver.getWindowHandles().toArray()[1]);
-		driver.findElement(By.tagName("textarea")).sendKeys("Deu certo?");
+		dsl.trocarJanela((String) driver.getWindowHandles().toArray()[1]);
+		dsl.escrever(By.tagName("textarea"), "Deu certo?");
 	
 		
-		driver.switchTo().window((String) driver.getWindowHandles().toArray()[0]);
-		driver.findElement(By.id("elementosForm:sugestoes")).sendKeys("E agora?");
+		dsl.trocarJanela((String) driver.getWindowHandles().toArray()[0]);
+		dsl.escrever(By.tagName("textarea"), "E agora?");
 
 	}
 }

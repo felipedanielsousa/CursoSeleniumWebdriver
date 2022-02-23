@@ -18,14 +18,15 @@ public class DSL {
 	/****************** TextField e textArea ***********************/
 	
     public void escrever(By by, String texto) {
-		
+		driver.findElement(by).clear();
 		driver.findElement(by).sendKeys(texto);
 	}
 	public void escrever(String id_campo, String texto) {
+		driver.findElement(By.id(id_campo)).clear();
 		driver.findElement(By.id(id_campo)).sendKeys(texto);
 	}
 	
-	public String obtervalorCampo(String id_campo) {
+	public String obterValorCampo(String id_campo) {
 		return driver.findElement(By.id(id_campo)).getAttribute("value");
 	}
 	/******************* Radio e Check **************************/
@@ -151,13 +152,19 @@ public class DSL {
 		return valor;
 	}
 	
+	public void alertaEscrever(String valor){
+		Alert alert = driver.switchTo().alert();
+		alert.sendKeys(valor);
+		alert.accept();
+	}
+	
 	/********************* Frames e Janelas **********************/
 	
 	public void entrarFrame(String id) {
 		driver.switchTo().frame(id);
 	}
 	
-	public void sairFrame(String id) {
+	public void sairFrame() {
 		driver.switchTo().defaultContent();
 	}
 	
