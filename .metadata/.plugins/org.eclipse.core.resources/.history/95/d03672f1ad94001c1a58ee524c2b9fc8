@@ -1,0 +1,14 @@
+
+public class CampoTreinamentoPage {
+	
+	private DSL dsl;
+	
+	public CampoTreinamentoPage(WebDriver drive) {
+		dsl = new DSL(driver);
+	}
+	
+	public void setNome(String nome) {
+		dsl.escrever("elementosForm:nome",nome);
+	}
+
+}

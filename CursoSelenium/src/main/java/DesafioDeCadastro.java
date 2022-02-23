@@ -15,17 +15,18 @@ public class DesafioDeCadastro {
 	
 	private WebDriver driver;
 	private DSL dsl;
+	private CampoTreinamentoPage page;
 	
 	@Before
 	public void inicializa() {
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\t_felipe.barbosa\\Documents\\Projetos\\Drivers\\chromedriver.exe");
 		driver = new ChromeDriver();
-
+		dsl = new DSL(driver);
+		page =  new CampoTreinamentoPage(driver);
 		driver.manage().window().setSize(new Dimension(1200, 765));	
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html"); //informando o diretorio raiz de onde estao os arquivos	
-		dsl = new DSL(driver);
+		
 	}
-	
 	@After
 	public void finaliza() {
 		driver.quit();
@@ -34,33 +35,30 @@ public class DesafioDeCadastro {
 	
 	@Test
 	public void deveCadastrarEvalidarResultado() {
-		dsl.escrever("elementosForm:nome","Felipe"); //escreve nome
-		dsl.escrever("elementosForm:sobrenome","Daniel"); //escreve sobrenome
-		dsl.clicarRadioButton("elementosForm:sexo:0"); //clica no radio button correspondete ao sexo
-		dsl.clicarRadioButton("elementosForm:comidaFavorita:0");
-		
-		//iteracao com combo
-		dsl.selecionarCombo("elementosForm:escolaridade", "Superior");
+		page.setNome("Felipe"); //escreve nome
+		page.setSobrenome("Daniel"); //escreve sobrenome
+		page.setSexoMasculino(); //clica no radio button correspondete ao sexo
+		page.setComidaCarne(); 
+		page.setEscolaridade("Superior");//iteracao com combo
 		//Combo multiplo
-		dsl.selecionarCombo("elementosForm:esportes", "Corrida");
-		dsl.selecionarCombo("elementosForm:esportes", "Karate");
-		dsl.selecionarCombo("elementosForm:esportes", "Natacao");
-		
+		page.setEsporte("Corrida");
+		page.setEsporte("Karate");
+		page.setEsporte("Natacao");
 		//validando o numero de selecoes no combo
 		/** List<WebElement> allSelectedoptions = dsl.getAllSelectedOptions();
 		Assert.assertEquals(3, allSelectedoptions.size()); **/
 		
 		//clicar em cadastrar
-		dsl.clicarBotao("elementosForm:cadastrar");
+		page.cadastrar();
 		
 		//validando resultado final
-		Assert.assertTrue(dsl.obterTexto("resultado").startsWith("Cadastrado!"));
-		Assert.assertTrue(dsl.obterTexto("descNome").endsWith("Felipe"));
-		Assert.assertTrue(dsl.obterTexto("descSobrenome").endsWith("Daniel"));
-		Assert.assertTrue(dsl.obterTexto("descSexo").endsWith("Masculino"));
-		Assert.assertTrue(dsl.obterTexto("descComida").endsWith("Carne"));
-		Assert.assertTrue(dsl.obterTexto("descEscolaridade").endsWith("superior"));
-		Assert.assertTrue(dsl.obterTexto("descEsportes").endsWith("Natacao Corrida Karate"));							
+		Assert.assertTrue(page.obterResultadoCadastro().startsWith("Cadastrado!"));
+		Assert.assertTrue(page.obterNomeCadastro().endsWith("Felipe"));
+		Assert.assertTrue(page.obterSobrenomeCadastro().endsWith("Daniel"));
+		Assert.assertTrue(page.obterSexoCadastro().endsWith("Masculino"));
+		Assert.assertTrue(page.obterComidaCadastro().endsWith("Carne"));
+		Assert.assertTrue(page.obterEscolaridadeCadastro().endsWith("superior"));
+		Assert.assertTrue(page.obterEsporte().endsWith("Natacao Corrida Karate"));							
 	}
 	
 		@Test
