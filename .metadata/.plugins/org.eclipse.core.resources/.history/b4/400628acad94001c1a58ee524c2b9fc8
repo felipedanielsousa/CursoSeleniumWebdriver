@@ -1,0 +1,8 @@
+
+public class CampoTreinamentoPage {
+	
+	public void setNome(String nome) {
+		dsl.escrever("elementosForm:nome",nome);
+	}
+
+}

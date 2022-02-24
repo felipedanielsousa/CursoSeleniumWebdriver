@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="DesafioDeCadastro" project="CursoSelenium" tests="5" started="5" failures="0" errors="0" ignored="0">
+  <testsuite name="DesafioDeCadastro" time="12.183">
+    <testcase name="deveValidarSexoObrigatorio" classname="DesafioDeCadastro" time="3.354"/>
+    <testcase name="deveValidarSobrenomeNomeObrigatorio" classname="DesafioDeCadastro" time="2.81"/>
+    <testcase name="deveValidarComidaVegetariana" classname="DesafioDeCadastro" time="2.483"/>
+    <testcase name="deveValidarNomeObrigatorio" classname="DesafioDeCadastro" time="1.376"/>
+    <testcase name="deveCadastrarEvalidarResultado" classname="DesafioDeCadastro" time="2.159"/>
+  </testsuite>
+</testrun>

@@ -1,0 +1,16 @@
+import org.junit.Assert;
+import org.junit.Test;
+
+public class TesteRegrasCadastro {
+	private DSL dsl;
+	@Test
+	public void deveValidaEsportisraIndeciso() {
+		page.setNome("Nome qualquer");
+		page.setSobrenome("Sobrenome qualquer");
+		page.setSexoMasculino();
+		page.setEsporte("Corrida", "O que eh esporte?");
+		dsl.selecionarCombo("elementosForm:esportes", "Corrida", "O que eh esporte?");
+		page.cadastrar();
+		Assert.assertEquals("Voce faz esporte ou nao?", dsl.alertaObterTextoEAceita());
+	}
+}

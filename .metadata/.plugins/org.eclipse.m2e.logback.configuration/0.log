@@ -8010,6 +8010,7 @@ org.eclipse.core.runtime.CoreException: Could not resolve artifact com.google.co
 2022-02-23 16:13:00,254 [Worker-108: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
 2022-02-23 16:13:00,255 [Worker-108: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2022-02-24 07:30:05,915 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+<<<<<<< HEAD
 2022-02-24 08:29:19,670 [Worker-20: Building] ERROR o.e.m.c.i.p.r.ProjectRegistryManager - File not found: C:\Users\t_felipe.barbosa\eclipse-workspace\CursoSelenium\pom.xml.
 org.eclipse.core.internal.resources.ResourceException: File not found: C:\Users\t_felipe.barbosa\eclipse-workspace\CursoSelenium\pom.xml.
 	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:835)
@@ -8164,3 +8165,7 @@ Caused by: java.nio.file.NoSuchFileException: C:\Users\t_felipe.barbosa\eclipse-
 	at org.eclipse.core.internal.filesystem.local.LocalFile.mkdir(LocalFile.java:307)
 	... 29 common frames omitted
 2022-02-24 08:36:43,249 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+=======
+>>>>>>> afd760af06e4bb8e277f863d5b1eaaec031a732e
+2022-02-24 08:57:48,311 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2022-02-24 08:58:40,932 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.

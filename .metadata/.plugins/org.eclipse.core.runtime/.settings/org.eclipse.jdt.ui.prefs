@@ -1,3 +1,6 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=afd760af06e4bb8e277f863d5b1eaaec031a732e
 content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="org.openqa.selenium.By"><rhs name\="org.openqa.selenium.By$ByClassName"/></lhs><lhs name\="org.openqa.selenium.Dimension"><rhs name\="org.openqa.selenium.Dimension"/></lhs></history>
 content_assist_number_of_computers=12
 content_assist_proposals_background=255,255,255
