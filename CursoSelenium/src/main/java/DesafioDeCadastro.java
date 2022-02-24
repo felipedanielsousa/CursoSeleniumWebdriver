@@ -63,35 +63,46 @@ public class DesafioDeCadastro {
 	
 		@Test
 		public void deveValidarNomeObrigatorio() {
-			dsl.clicarBotao("elementosForm:cadastrar");
+			page.cadastrar();
 			Assert.assertEquals("Nome eh obrigatorio", dsl.alertaObterTextoEAceita());
 			
 		}
 		
 		@Test
 		public void deveValidarSobrenomeNomeObrigatorio() {
-			dsl.escrever("elementosForm:nome", "Nome qualquer");
-			dsl.clicarBotao("elementosForm:cadastrar");
+			page.setNome("Nome qualquer");
+			page.cadastrar();
 			Assert.assertEquals("Sobrenome eh obrigatorio", dsl.alertaObterTextoEAceita());
 			
 		}
 		
 		@Test
 		public void deveValidarSexoObrigatorio() {
-			dsl.escrever("elementosForm:nome", "Nome qualquer");
-			dsl.escrever("elementosForm:sobrenome", "Sobrenome qualquer");
-			dsl.clicarBotao("elementosForm:cadastrar");
+			page.setNome("Nome qualquer");
+			page.setSobrenome("Sobrenome qualquer");
+			page.cadastrar();
 			Assert.assertEquals("Sexo eh obrigatorio", dsl.alertaObterTextoEAceita());
 		}
 		
 		@Test
 		public void deveValidarComidaVegetariana() {
-			dsl.escrever("elementosForm:nome", "Nome qualquer");
-			dsl.escrever("elementosForm:sobrenome", "Sobrenome qualquer");
-			dsl.clicarRadioButton("elementosForm:sexo:1");
-			dsl.clicarRadioButton("elementosForm:comidaFavorita:0");
-			dsl.clicarRadioButton("elementosForm:comidaFavorita:3");
-			dsl.clicarBotao("elementosForm:cadastrar");
+			page.setNome("Nome qualquer");
+			page.setSobrenome("Sobrenome qualquer");
+			page.setSexoFeminino();
+			page.setComidaCarne();
+			page.setComidaVegetariano();
+			page.cadastrar();
 			Assert.assertEquals("Tem certeza que voce eh vegetariano?", dsl.alertaObterTextoEAceita());
+		}
+		
+		@Test
+		public void deveValidaEsportisraIndeciso() {
+			page.setNome("Nome qualquer");
+			page.setSobrenome("Sobrenome qualquer");
+			page.setSexoMasculino();
+			page.setEsporte("Corrida", "O que eh esporte?");
+			dsl.selecionarCombo("elementosForm:esportes", "Corrida", "O que eh esporte?");
+			page.cadastrar();
+			Assert.assertEquals("Voce faz esporte ou nao?", dsl.alertaObterTextoEAceita());
 		}
 }
