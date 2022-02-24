@@ -8163,3 +8163,4 @@ Caused by: java.nio.file.NoSuchFileException: C:\Users\t_felipe.barbosa\eclipse-
 	at java.base/java.nio.file.Files.createDirectory(Files.java:690)
 	at org.eclipse.core.internal.filesystem.local.LocalFile.mkdir(LocalFile.java:307)
 	... 29 common frames omitted
+2022-02-24 08:36:43,249 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
